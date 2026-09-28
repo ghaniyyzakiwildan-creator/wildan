@@ -2,727 +2,850 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Portfolio | Wildan Ghaniyy Zaki</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-            font-family: 'Segoe UI', sans-serif;
-        }
-
-        body {
-            background: #070b14;
-            color: white;
-            overflow-x: hidden;
-        }
-
-        /* BACKGROUND */
-        body::before {
-            content: "";
-            position: fixed;
-            width: 450px;
-            height: 450px;
-            background: #6c5ce7;
-            border-radius: 50%;
-            filter: blur(150px);
-            opacity: 0.25;
-            top: -150px;
-            left: -150px;
-            z-index: -1;
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            background: #00d9ff;
-            border-radius: 50%;
-            filter: blur(150px);
-            opacity: 0.15;
-            bottom: -150px;
-            right: -100px;
-            z-index: -1;
-        }
-
-        /* NAVBAR */
-        nav {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            padding: 20px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            background: rgba(7, 11, 20, 0.75);
-            backdrop-filter: blur(15px);
-
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 26px;
-            font-weight: 800;
-        }
-
-        .logo span {
-            color: #00d9ff;
-        }
-
-        nav ul {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #ccc;
-            font-size: 15px;
-            transition: .3s;
-        }
-
-        nav ul li a:hover {
-            color: #00d9ff;
-        }
-
-        /* HERO */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 100px 20px 50px;
-        }
-
-        .hero-content {
-            max-width: 850px;
-        }
-
-        /* PROFILE */
-        .profile {
-            width: 150px;
-            height: 150px;
-            margin: auto;
-            padding: 5px;
-
-            border-radius: 50%;
-
-            background: linear-gradient(
-                135deg,
-                #6c5ce7,
-                #00d9ff
-            );
-
-            box-shadow:
-                0 0 30px rgba(0,217,255,.25),
-                0 0 70px rgba(108,92,231,.2);
-
-            animation: floating 3s ease-in-out infinite;
-        }
-
-        .profile-inner {
-            width: 100%;
-            height: 100%;
-
-            border-radius: 50%;
-
-            background: #101522;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            font-size: 55px;
-            font-weight: 800;
-
-            color: #fff;
-        }
-
-        @keyframes floating {
-            0%,100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .badge {
-            display: inline-block;
-
-            margin-top: 30px;
-            margin-bottom: 18px;
-
-            padding: 8px 18px;
-
-            border-radius: 30px;
-
-            background: rgba(0,217,255,.08);
-
-            border: 1px solid rgba(0,217,255,.3);
-
-            color: #00d9ff;
-
-            font-size: 14px;
-        }
-
-        .hero h1 {
-            font-size: clamp(42px, 7vw, 75px);
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(
-                90deg,
-                #6c5ce7,
-                #00d9ff
-            );
-
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        .hero p {
-            color: #999;
-            font-size: 18px;
-            line-height: 1.7;
-            max-width: 650px;
-            margin: auto;
-        }
-
-        .button {
-            display: inline-block;
-
-            margin-top: 30px;
-
-            padding: 14px 30px;
-
-            border-radius: 30px;
-
-            text-decoration: none;
-
-            color: white;
-
-            font-weight: bold;
-
-            background: linear-gradient(
-                90deg,
-                #6c5ce7,
-                #00bfff
-            );
-
-            box-shadow: 0 10px 30px rgba(0,191,255,.2);
-
-            transition: .3s;
-        }
-
-        .button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,217,255,.3);
-        }
-
-        /* SECTION */
-        section {
-            padding: 100px 8%;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h2 {
-            font-size: 38px;
-            margin-bottom: 10px;
-        }
-
-        .section-title p {
-            color: #777;
-        }
-
-        /* ABOUT */
-        .about-container {
-            max-width: 900px;
-            margin: auto;
-
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-
-            gap: 20px;
-        }
-
-        .info-card {
-            padding: 30px;
-
-            border-radius: 22px;
-
-            background: rgba(255,255,255,.04);
-
-            border: 1px solid rgba(255,255,255,.08);
-
-            backdrop-filter: blur(15px);
-
-            transition: .3s;
-        }
-
-        .info-card:hover {
-            transform: translateY(-8px);
-            border-color: #00d9ff;
-        }
-
-        .info-card h3 {
-            color: #00d9ff;
-            margin-bottom: 10px;
-        }
-
-        .info-card p {
-            color: #aaa;
-            font-size: 17px;
-        }
-
-        /* SKILL */
-        .skills {
-            max-width: 900px;
-            margin: auto;
-
-            display: grid;
-
-            grid-template-columns: repeat(3, 1fr);
-
-            gap: 20px;
-        }
-
-        .skill {
-            padding: 30px;
-
-            text-align: center;
-
-            border-radius: 22px;
-
-            background: rgba(255,255,255,.04);
-
-            border: 1px solid rgba(255,255,255,.08);
-
-            transition: .3s;
-        }
-
-        .skill:hover {
-            transform: translateY(-8px);
-            border-color: #6c5ce7;
-        }
-
-        .skill .icon {
-            font-size: 45px;
-            margin-bottom: 15px;
-        }
-
-        .skill h3 {
-            margin-bottom: 10px;
-        }
-
-        .skill p {
-            color: #888;
-            line-height: 1.6;
-        }
-
-        /* HOBBY */
-        .hobby {
-            max-width: 850px;
-            margin: auto;
-
-            padding: 50px;
-
-            text-align: center;
-
-            border-radius: 30px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(108,92,231,.12),
-                    rgba(0,217,255,.06)
-                );
-
-            border: 1px solid rgba(255,255,255,.1);
-        }
-
-        .football {
-            font-size: 75px;
-            margin-bottom: 20px;
-        }
-
-        .hobby h3 {
-            font-size: 30px;
-            margin-bottom: 15px;
-        }
-
-        .hobby p {
-            color: #999;
-            line-height: 1.7;
-        }
-
-        /* CONTACT */
-        .contact-box {
-            max-width: 700px;
-            margin: auto;
-
-            text-align: center;
-
-            padding: 45px;
-
-            border-radius: 25px;
-
-            background: rgba(255,255,255,.04);
-
-            border: 1px solid rgba(255,255,255,.08);
-        }
-
-        .contact-box p {
-            color: #999;
-            line-height: 1.7;
-        }
-
-        /* FOOTER */
-        footer {
-            text-align: center;
-
-            padding: 30px;
-
-            color: #666;
-
-            border-top: 1px solid rgba(255,255,255,.08);
-        }
-
-        footer span {
-            color: #00d9ff;
-        }
-
-        /* RESPONSIVE */
-        @media(max-width: 750px) {
-
-            nav {
-                padding: 18px 5%;
-            }
-
-            nav ul {
-                gap: 12px;
-            }
-
-            nav ul li a {
-                font-size: 12px;
-            }
-
-            section {
-                padding: 80px 6%;
-            }
-
-            .about-container,
-            .skills {
-                grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                font-size: 45px;
-            }
-
-            .hobby {
-                padding: 35px 20px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>WILDAN — Streetwear Portfolio</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#080808;
+    color:white;
+    font-family:'Poppins',sans-serif;
+    overflow-x:hidden;
+}
+
+/* ================= BACKGROUND ================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:40px 40px;
+    pointer-events:none;
+    z-index:-2;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:#ff0055;
+    filter:blur(180px);
+    opacity:.13;
+    top:-200px;
+    right:-150px;
+    z-index:-3;
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    padding:18px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(5,5,5,.82);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid #222;
+    z-index:999;
+}
+
+.logo{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:34px;
+    letter-spacing:3px;
+}
+
+.logo span{
+    color:#ff0055;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:30px;
+}
+
+nav a{
+    color:#aaa;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#ff0055;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:120px 20px 70px;
+    position:relative;
+}
+
+.hero-content{
+    max-width:900px;
+}
+
+.tag{
+    display:inline-block;
+    border:1px solid #ff0055;
+    color:#ff0055;
+    padding:8px 18px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:2px;
+    transform:rotate(-2deg);
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(75px,14vw,170px);
+    line-height:.8;
+    letter-spacing:5px;
+    text-transform:uppercase;
+}
+
+.hero h1 span{
+    color:#ff0055;
+    text-shadow:5px 5px 0 #fff;
+}
+
+.hero-sub{
+    margin:30px auto;
+    max-width:650px;
+    color:#999;
+    font-size:16px;
+    line-height:1.8;
+}
+
+.street-button{
+    display:inline-block;
+    padding:14px 30px;
+    color:white;
+    text-decoration:none;
+    background:#ff0055;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    border:2px solid #ff0055;
+    box-shadow:6px 6px 0 #fff;
+    transition:.2s;
+}
+
+.street-button:hover{
+    transform:translate(5px,5px);
+    box-shadow:0 0 0 #fff;
+}
+
+/* Graffiti text */
+
+.graffiti{
+    position:absolute;
+    font-family:'Bebas Neue',sans-serif;
+    color:#1b1b1b;
+    font-size:130px;
+    z-index:-1;
+    user-select:none;
+}
+
+.g1{
+    left:-20px;
+    top:30%;
+    transform:rotate(-15deg);
+}
+
+.g2{
+    right:-30px;
+    bottom:20%;
+    transform:rotate(15deg);
+}
+
+/* ================= SECTION ================= */
+
+section{
+    padding:110px 8%;
+}
+
+.section-title{
+    margin-bottom:50px;
+}
+
+.section-title small{
+    color:#ff0055;
+    font-weight:800;
+    letter-spacing:3px;
+}
+
+.section-title h2{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:70px;
+    letter-spacing:2px;
+    line-height:1;
+}
+
+.section-title p{
+    color:#777;
+    margin-top:10px;
+}
+
+/* ================= ABOUT ================= */
+
+.about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.card{
+    background:#111;
+    border:1px solid #292929;
+    padding:35px;
+    position:relative;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    width:80px;
+    height:5px;
+    background:#ff0055;
+    top:0;
+    left:0;
+}
+
+.card:hover{
+    transform:translateY(-7px);
+    border-color:#ff0055;
+}
+
+.card h3{
+    font-size:14px;
+    color:#777;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    margin-bottom:10px;
+}
+
+.card p{
+    font-size:23px;
+    font-weight:700;
+}
+
+/* ================= SKILLS ================= */
+
+.skills{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.skill{
+    background:#111;
+    padding:35px 25px;
+    border:1px solid #292929;
+    text-align:center;
+    transition:.3s;
+}
+
+.skill:hover{
+    background:#ff0055;
+    transform:rotate(-2deg) scale(1.03);
+}
+
+.skill-icon{
+    font-size:45px;
+    margin-bottom:20px;
+}
+
+.skill h3{
+    font-size:20px;
+    margin-bottom:10px;
+}
+
+.skill p{
+    color:#888;
+    font-size:13px;
+    line-height:1.7;
+}
+
+.skill:hover p{
+    color:white;
+}
+
+/* ================= HOBBY ================= */
+
+.hobby{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+    align-items:center;
+}
+
+.hobby-text{
+    background:#111;
+    border-left:6px solid #ff0055;
+    padding:45px;
+}
+
+.hobby-text h3{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:65px;
+}
+
+.hobby-text p{
+    color:#999;
+    line-height:1.8;
+}
+
+.futsal-box{
+    min-height:300px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #151515,
+            #151515 10px,
+            #111 10px,
+            #111 20px
+        );
+    border:1px solid #333;
+    font-size:120px;
+}
+
+/* ================= GAME ================= */
+
+.game-section{
+    background:#0d0d0d;
+    border-top:1px solid #222;
+    border-bottom:1px solid #222;
+}
+
+.game{
+    max-width:800px;
+    margin:auto;
+    background:#111;
+    border:2px solid #292929;
+    padding:35px;
+    text-align:center;
+    position:relative;
+}
+
+.game h3{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:55px;
+    letter-spacing:2px;
+}
+
+.game-desc{
+    color:#777;
+    margin-bottom:25px;
+}
+
+.scoreboard{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    margin:25px 0;
+}
+
+.score{
+    background:#080808;
+    padding:15px 30px;
+    border:1px solid #333;
+}
+
+.score span{
+    display:block;
+    color:#ff0055;
+    font-size:30px;
+    font-weight:800;
+}
+
+#gameArea{
+    width:100%;
+    height:350px;
+    background:
+        linear-gradient(rgba(255,0,85,.04),rgba(255,0,85,.04)),
+        #080808;
+    border:2px dashed #333;
+    position:relative;
+    overflow:hidden;
+    cursor:crosshair;
+}
+
+/* Target */
+
+#target{
+    position:absolute;
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    background:#ff0055;
+    border:5px solid white;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    font-size:27px;
+    box-shadow:0 0 25px rgba(255,0,85,.7);
+    user-select:none;
+    cursor:pointer;
+}
+
+.start-btn{
+    margin-top:25px;
+    padding:14px 35px;
+    border:0;
+    background:#ff0055;
+    color:white;
+    font-weight:800;
+    cursor:pointer;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    box-shadow:5px 5px 0 white;
+}
+
+.start-btn:hover{
+    transform:translate(3px,3px);
+    box-shadow:2px 2px 0 white;
+}
+
+/* ================= CONTACT ================= */
+
+.contact{
+    text-align:center;
+}
+
+.contact p{
+    max-width:600px;
+    margin:0 auto 30px;
+    color:#777;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    padding:35px;
+    text-align:center;
+    border-top:1px solid #222;
+    color:#555;
+    font-size:12px;
+    letter-spacing:1px;
+}
+
+footer span{
+    color:#ff0055;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:800px){
+
+    nav{
+        padding:15px 5%;
+    }
+
+    nav ul{
+        gap:12px;
+    }
+
+    nav a{
+        font-size:9px;
+    }
+
+    .about-grid,
+    .hobby{
+        grid-template-columns:1fr;
+    }
+
+    .skills{
+        grid-template-columns:1fr;
+    }
+
+    .section-title h2{
+        font-size:55px;
+    }
+
+    .hero h1{
+        font-size:75px;
+    }
+
+    .graffiti{
+        display:none;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav>
+<!-- ================= NAVBAR ================= -->
 
-        <div class="logo">
-            W<span>.</span>
+<nav>
+    <div class="logo">W<span>/</span>Z</div>
+
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">Profile</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#game">Game</a></li>
+    </ul>
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+    <div class="graffiti g1">STREET</div>
+    <div class="graffiti g2">TJKT</div>
+
+    <div class="hero-content">
+
+        <div class="tag">
+            SMK TARUNA BHAKTI • XI TKJ 4
         </div>
 
-        <ul>
-            <li>
-                <a href="#home">Home</a>
-            </li>
+        <h1>
+            WILDAN<br>
+            <span>GHANIYY</span>
+        </h1>
 
-            <li>
-                <a href="#about">About</a>
-            </li>
+        <p class="hero-sub">
+            Welcome to my digital street.
+            Saya adalah siswa jurusan TJKT yang suka
+            teknologi, networking, coding, dan futsal.
+        </p>
 
-            <li>
-                <a href="#skills">Skills</a>
-            </li>
+        <a href="#about" class="street-button">
+            Enter The Street →
+        </a>
 
-            <li>
-                <a href="#hobby">Hobby</a>
-            </li>
+    </div>
 
-            <li>
-                <a href="#contact">Contact</a>
-            </li>
-        </ul>
-
-    </nav>
+</section>
 
 
-    <!-- HERO -->
-    <section class="hero" id="home">
+<!-- ================= ABOUT ================= -->
 
-        <div class="hero-content">
+<section id="about">
 
-            <div class="profile">
+    <div class="section-title">
+        <small>01 — PROFILE</small>
+        <h2>WHO AM I?</h2>
+        <p>Kenalan sedikit sama gue.</p>
+    </div>
 
-                <div class="profile-inner">
-                    W
-                </div>
 
-            </div>
+    <div class="about-grid">
 
-            <div class="badge">
-                XI TKJ 4 • TJKT • SMK TARUNA BHAKTI
-            </div>
+        <div class="card">
+            <h3>Nama</h3>
+            <p>Wildan Ghaniyy Zaki</p>
+        </div>
 
-            <h1>
-                Hi, I'm
-                <span>Wildan</span>
-            </h1>
+        <div class="card">
+            <h3>Kelas</h3>
+            <p>XI TKJ 4</p>
+        </div>
 
+        <div class="card">
+            <h3>Jurusan</h3>
+            <p>TJKT</p>
+        </div>
+
+        <div class="card">
+            <h3>Sekolah</h3>
+            <p>SMK TARUNA BHAKTI</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SKILLS ================= -->
+
+<section id="skills">
+
+    <div class="section-title">
+        <small>02 — SKILLS</small>
+        <h2>MY SKILLS</h2>
+        <p>Things I'm learning right now.</p>
+    </div>
+
+
+    <div class="skills">
+
+        <div class="skill">
+            <div class="skill-icon">🌐</div>
+            <h3>NETWORKING</h3>
             <p>
-                Selamat datang di website portfolio saya.
-                Saya adalah siswa jurusan TJKT yang tertarik
-                dengan dunia teknologi, jaringan komputer,
-                dan pengembangan website.
+                Mempelajari jaringan komputer,
+                IP address, router, switch dan konfigurasi jaringan.
             </p>
-
-            <a href="#about" class="button">
-                Explore My Profile →
-            </a>
-
         </div>
 
-    </section>
-
-
-    <!-- ABOUT -->
-    <section id="about">
-
-        <div class="section-title">
-
-            <h2>About Me</h2>
-
+        <div class="skill">
+            <div class="skill-icon">🐧</div>
+            <h3>LINUX</h3>
             <p>
-                Sedikit informasi tentang saya
+                Belajar Ubuntu Server, SSH,
+                permission, web server dan DHCP.
             </p>
-
         </div>
 
-
-        <div class="about-container">
-
-            <div class="info-card">
-
-                <h3>👤 Nama</h3>
-
-                <p>
-                    Wildan Ghaniyy Zaki
-                </p>
-
-            </div>
-
-
-            <div class="info-card">
-
-                <h3>🎓 Kelas</h3>
-
-                <p>
-                    XI TKJ 4
-                </p>
-
-            </div>
-
-
-            <div class="info-card">
-
-                <h3>💻 Jurusan</h3>
-
-                <p>
-                    TJKT
-                </p>
-
-            </div>
-
-
-            <div class="info-card">
-
-                <h3>🏫 Sekolah</h3>
-
-                <p>
-                    SMK TARUNA BHAKTI
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- SKILLS -->
-    <section id="skills">
-
-        <div class="section-title">
-
-            <h2>My Skills</h2>
-
+        <div class="skill">
+            <div class="skill-icon">💻</div>
+            <h3>WEB DESIGN</h3>
             <p>
-                Beberapa bidang yang saya pelajari
+                Membuat website menggunakan
+                HTML, CSS dan JavaScript.
             </p>
-
         </div>
 
+    </div>
 
-        <div class="skills">
-
-            <div class="skill">
-
-                <div class="icon">
-                    🌐
-                </div>
-
-                <h3>Networking</h3>
-
-                <p>
-                    Mempelajari dasar jaringan komputer,
-                    IP address, dan konfigurasi jaringan.
-                </p>
-
-            </div>
+</section>
 
 
-            <div class="skill">
+<!-- ================= HOBBY ================= -->
 
-                <div class="icon">
-                    🖥️
-                </div>
+<section>
 
-                <h3>Server</h3>
-
-                <p>
-                    Mempelajari Linux Server,
-                    SSH, Web Server, dan DHCP.
-                </p>
-
-            </div>
+    <div class="section-title">
+        <small>03 — LIFESTYLE</small>
+        <h2>MY HOBBY</h2>
+        <p>Outside the computer.</p>
+    </div>
 
 
-            <div class="skill">
+    <div class="hobby">
 
-                <div class="icon">
-                    💻
-                </div>
+        <div class="hobby-text">
 
-                <h3>Web Design</h3>
-
-                <p>
-                    Membuat website menggunakan
-                    HTML dan CSS.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- HOBBY -->
-    <section id="hobby">
-
-        <div class="section-title">
-
-            <h2>My Hobby</h2>
+            <h3>FUTSAL</h3>
 
             <p>
-                Aktivitas yang saya sukai
+                Futsal adalah salah satu hobi gue.
+                Selain seru, futsal juga ngajarin
+                teamwork, komunikasi, fokus dan
+                sportivitas.
             </p>
 
         </div>
 
+        <div class="futsal-box">
+            ⚽
+        </div>
 
-        <div class="hobby">
+    </div>
 
-            <div class="football">
+</section>
+
+
+<!-- ================= GAME ================= -->
+
+<section class="game-section" id="game">
+
+    <div class="section-title">
+        <small>04 — MINI GAME</small>
+        <h2>STREET CLICKER</h2>
+        <p>Seberapa cepat refleks kamu?</p>
+    </div>
+
+
+    <div class="game">
+
+        <h3>⚡ CATCH THE BALL</h3>
+
+        <p class="game-desc">
+            Klik bola sebanyak mungkin sebelum waktu habis!
+        </p>
+
+
+        <div class="scoreboard">
+
+            <div class="score">
+                SCORE
+                <span id="score">0</span>
+            </div>
+
+            <div class="score">
+                TIME
+                <span id="time">20</span>
+            </div>
+
+        </div>
+
+
+        <div id="gameArea">
+
+            <div id="target">
                 ⚽
             </div>
 
-            <h3>Futsal</h3>
-
-            <p>
-                Futsal adalah salah satu hobi saya.
-                Selain seru untuk dimainkan, futsal juga
-                mengajarkan kerja sama tim, komunikasi,
-                dan sportivitas.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- CONTACT -->
-    <section id="contact">
-
-        <div class="section-title">
-
-            <h2>Let's Connect</h2>
-
-            <p>
-                Terima kasih sudah mengunjungi portfolio saya
-            </p>
-
         </div>
 
 
-        <div class="contact-box">
+        <button class="start-btn" onclick="startGame()">
+            START GAME
+        </button>
 
-            <p>
-                Website ini dibuat sebagai portfolio pribadi
-                dan tugas pembelajaran di jurusan TJKT.
-            </p>
+    </div>
 
-            <a href="#home" class="button">
-                Back To Top ↑
-            </a>
-
-        </div>
-
-    </section>
+</section>
 
 
-    <!-- FOOTER -->
-    <footer>
+<!-- ================= CONTACT ================= -->
 
-        © 2026
-        <span>Wildan Ghaniyy Zaki</span>
-        • XI TKJ 4
-        • TJKT
+<section class="contact">
 
-    </footer>
+    <div class="section-title">
+        <small>05 — END</small>
+        <h2>THANKS FOR VISITING</h2>
+    </div>
+
+    <p>
+        Thanks udah mampir ke portfolio gue.
+        Keep learning, keep creating, and keep moving.
+    </p>
+
+    <a href="#home" class="street-button">
+        BACK TO TOP ↑
+    </a>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+    © 2026 <span>WILDAN GHANIYY ZAKI</span> —
+    XI TKJ 4 • TJKT • SMK TARUNA BHAKTI
+</footer>
+
+
+<!-- ================= GAME JAVASCRIPT ================= -->
+
+<script>
+
+let score = 0;
+let time = 20;
+let timer;
+let playing = false;
+
+const target = document.getElementById("target");
+const gameArea = document.getElementById("gameArea");
+const scoreText = document.getElementById("score");
+const timeText = document.getElementById("time");
+
+
+function startGame(){
+
+    if(playing) return;
+
+    playing = true;
+
+    score = 0;
+    time = 20;
+
+    scoreText.textContent = score;
+    timeText.textContent = time;
+
+    target.style.display = "flex";
+
+    moveTarget();
+
+    timer = setInterval(() => {
+
+        time--;
+
+        timeText.textContent = time;
+
+        if(time <= 0){
+
+            clearInterval(timer);
+
+            playing = false;
+
+            target.style.display = "none";
+
+            alert(
+                "GAME OVER! 🎮\n\n" +
+                "Score kamu: " + score
+            );
+
+        }
+
+    },1000);
+}
+
+
+function moveTarget(){
+
+    const maxX =
+        gameArea.clientWidth - target.offsetWidth;
+
+    const maxY =
+        gameArea.clientHeight - target.offsetHeight;
+
+    const randomX =
+        Math.floor(Math.random() * maxX);
+
+    const randomY =
+        Math.floor(Math.random() * maxY);
+
+    target.style.left = randomX + "px";
+    target.style.top = randomY + "px";
+}
+
+
+target.addEventListener("click", function(){
+
+    if(!playing) return;
+
+    score++;
+
+    scoreText.textContent = score;
+
+    moveTarget();
+
+});
+
+
+</script>
 
 </body>
 </html>

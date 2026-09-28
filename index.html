@@ -1,1 +1,602 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Wildan Ghanny</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #070b14;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(7, 11, 20, 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #00d9ff;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #00d9ff;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px 50px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: #0066ff;
+            filter: blur(180px);
+            opacity: 0.25;
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile {
+            width: 150px;
+            height: 150px;
+            margin: auto;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 55px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00d9ff, #0066ff);
+            box-shadow: 0 0 50px rgba(0, 217, 255, 0.5);
+            border: 5px solid rgba(255,255,255,0.15);
+        }
+
+        .hero h1 {
+            margin-top: 25px;
+            font-size: 55px;
+        }
+
+        .hero h1 span {
+            color: #00d9ff;
+        }
+
+        .hero p {
+            margin: 15px auto;
+            max-width: 650px;
+            color: #aab4c5;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .badge {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 9px 18px;
+            border-radius: 30px;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid #00d9ff;
+            color: #00d9ff;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 14px 28px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #00d9ff, #0066ff);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 140, 255, 0.25);
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.4);
+        }
+
+        /* SECTION */
+        section {
+            padding: 90px 8%;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .title h2 {
+            font-size: 38px;
+        }
+
+        .title h2 span {
+            color: #00d9ff;
+        }
+
+        .title p {
+            color: #8994a8;
+            margin-top: 10px;
+        }
+
+        /* ABOUT */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 30px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0,217,255,0.5);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .card h3 {
+            color: #00d9ff;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .card p {
+            color: #aab4c5;
+            line-height: 1.8;
+        }
+
+        .info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .info-box {
+            padding: 18px;
+            background: rgba(0,217,255,0.05);
+            border-radius: 12px;
+            border-left: 3px solid #00d9ff;
+        }
+
+        .info-box small {
+            color: #778399;
+        }
+
+        .info-box strong {
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* SKILLS */
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .skill {
+            text-align: center;
+            padding: 30px 15px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 18px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: 0.3s;
+        }
+
+        .skill:hover {
+            transform: scale(1.05);
+            border-color: #00d9ff;
+        }
+
+        .skill .icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .skill h3 {
+            margin-bottom: 8px;
+        }
+
+        .skill p {
+            color: #8994a8;
+            font-size: 14px;
+        }
+
+        /* PROJECT */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .project {
+            overflow: hidden;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: 0.3s;
+        }
+
+        .project:hover {
+            transform: translateY(-8px);
+            border-color: #00d9ff;
+        }
+
+        .project-top {
+            height: 150px;
+            background: linear-gradient(135deg, #0066ff, #00d9ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 55px;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .project-content p {
+            color: #8994a8;
+            line-height: 1.6;
+        }
+
+        /* CONTACT */
+        .contact {
+            max-width: 750px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .contact-box {
+            margin-top: 30px;
+            padding: 40px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .contact-box p {
+            color: #aab4c5;
+            line-height: 1.8;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #687386;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        footer span {
+            color: #00d9ff;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .skills {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 35px;
+            }
+
+            section {
+                padding: 70px 5%;
+            }
+
+            .skills {
+                grid-template-columns: 1fr;
+            }
+
+            .info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">W<span>G.</span></div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#skills">Skill</a></li>
+            <li><a href="#project">Project</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <!-- HOME -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+
+            <div class="profile">WG</div>
+
+            <div class="badge">⚡ Student • TKJ • Tech Enthusiast</div>
+
+            <h1>Halo, Saya <span>Wildan Ghanny</span></h1>
+
+            <p>
+                Saya adalah siswa jurusan Teknik Komputer dan Jaringan
+                yang tertarik dengan dunia komputer, jaringan, server,
+                Linux, dan teknologi digital.
+            </p>
+
+            <a href="#about" class="btn">Lihat Portfolio ↓</a>
+
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="title">
+            <h2>Tentang <span>Saya</span></h2>
+            <p>Kenalan lebih dekat dengan saya</p>
+        </div>
+
+        <div class="about">
+
+            <div class="card">
+                <h3>👨‍💻 About Me</h3>
+                <p>
+                    Nama saya Wildan Ghanny. Saya merupakan siswa
+                    SMK Taruna Bhakti dari jurusan Teknik Komputer
+                    dan Jaringan (TKJ). Saya suka mempelajari teknologi,
+                    jaringan komputer, server, Linux, dan berbagai hal
+                    yang berhubungan dengan dunia IT.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>📌 Biodata</h3>
+
+                <div class="info">
+
+                    <div class="info-box">
+                        <small>Nama</small>
+                        <strong>Wildan Ghanny</strong>
+                    </div>
+
+                    <div class="info-box">
+                        <small>Umur</small>
+                        <strong>16 Tahun</strong>
+                    </div>
+
+                    <div class="info-box">
+                        <small>Kelas</small>
+                        <strong>XI TKJ 4</strong>
+                    </div>
+
+                    <div class="info-box">
+                        <small>Jurusan</small>
+                        <strong>TKJ</strong>
+                    </div>
+
+                    <div class="info-box">
+                        <small>Sekolah</small>
+                        <strong>SMK Taruna Bhakti</strong>
+                    </div>
+
+                    <div class="info-box">
+                        <small>Bidang</small>
+                        <strong>Networking & Server</strong>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <div class="title">
+            <h2>My <span>Skills</span></h2>
+            <p>Beberapa bidang yang sedang saya pelajari</p>
+        </div>
+
+        <div class="skills">
+
+            <div class="skill">
+                <div class="icon">🌐</div>
+                <h3>Networking</h3>
+                <p>Konfigurasi jaringan dan perangkat network.</p>
+            </div>
+
+            <div class="skill">
+                <div class="icon">🐧</div>
+                <h3>Linux</h3>
+                <p>Ubuntu, terminal, server dan administrasi dasar.</p>
+            </div>
+
+            <div class="skill">
+                <div class="icon">🖥️</div>
+                <h3>Server</h3>
+                <p>Web server, SSH, DHCP dan konfigurasi server.</p>
+            </div>
+
+            <div class="skill">
+                <div class="icon">🐳</div>
+                <h3>Docker</h3>
+                <p>Container, image, port mapping dan web server.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PROJECT -->
+    <section id="project">
+        <div class="title">
+            <h2>My <span>Projects</span></h2>
+            <p>Beberapa project yang pernah saya kerjakan</p>
+        </div>
+
+        <div class="projects">
+
+            <div class="project">
+                <div class="project-top">🌐</div>
+
+                <div class="project-content">
+                    <h3>Website Portfolio</h3>
+                    <p>
+                        Membuat website portfolio menggunakan HTML
+                        dan CSS dengan desain modern dan responsif.
+                    </p>
+                </div>
+            </div>
+
+            <div class="project">
+                <div class="project-top">🐧</div>
+
+                <div class="project-content">
+                    <h3>Ubuntu Server</h3>
+                    <p>
+                        Praktik konfigurasi Ubuntu Server seperti SSH,
+                        web server dan DHCP server.
+                    </p>
+                </div>
+            </div>
+
+            <div class="project">
+                <div class="project-top">🐳</div>
+
+                <div class="project-content">
+                    <h3>Docker Web Server</h3>
+                    <p>
+                        Membuat container web server menggunakan Docker
+                        dan melakukan konfigurasi port.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="contact">
+
+            <div class="title">
+                <h2>Let's <span>Connect</span></h2>
+                <p>Terima kasih sudah mengunjungi portfolio saya.</p>
+            </div>
+
+            <div class="contact-box">
+                <p>
+                    Saya masih terus belajar dan mengembangkan kemampuan
+                    di bidang teknologi dan jaringan komputer.
+                    Semoga portfolio ini bisa menjadi gambaran tentang
+                    diri dan project yang saya kerjakan.
+                </p>
+
+                <a href="#home" class="btn">Kembali ke Atas ↑</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 <span>Wildan Ghanny</span> • XI TKJ 4 • SMK Taruna Bhakti
+    </footer>
+
+</body>
+</html>
+```
 
